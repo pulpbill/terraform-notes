@@ -1,6 +1,6 @@
 # terraform-notes
 
-#This is a [WIP]
+# This is a [WIP]
 
 Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and there are plenty of examples, I'll wrote basic concepts and resources if you want to get started with Terraform.
 
