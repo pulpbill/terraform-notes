@@ -28,7 +28,9 @@ Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and 
 
 -**Data sources**: Terraform uses data sources to fetch information from cloud provider APIs, such as disk image IDs, or information about the rest of your infrastructure through the outputs of other Terraform configurations. Data sources allow you to load data from APIs or other Terraform workspaces (you can even use it between workspaces on TF cloud and enterprise).
 
--**States**:
+-**States**: .tfstate Keep track of resources created by your configuration (modules) and maps them to real-world resources. You should not directly interact with state files.
+When you initialize a project, terraform will work with this file to execute actions (commands), like: plan - apply - destroy - show. It's metadata used to know what you have planned (either local or in TF cloud) and what you actually have deployed in whatever provider you've chosen.
+*You can move and switch states, but it's an advanced feature and out of the scope for this 101*.
 
 -**Input Variables**:
 
