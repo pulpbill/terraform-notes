@@ -67,6 +67,8 @@ When you execute *terraform plan* a *.terraform.state* file will automatically b
 
 -**Local Values**:
 
+-**Lock file**: At present, the dependency lock file tracks only provider dependencies.Terraform automatically creates or updates the dependency lock file (*.terraform.lock.hcl*) each time you run the *terraform init* command. You should include this file in your version control repository so that you can discuss potential changes to your external dependencies via code review.
+
 ## Commands:
 
 -**terraform init**: When you create a new configuration — or check out an existing configuration from version control — you need to initialize the directory with terraform init. Initializing a configuration directory downloads and installs the providers defined in the configuration in a hidden directory called *.terraform*, which in this case is the **aws provider**. Also, creates a **lock file** named: *.terraform.lock.hcl* which specifies the exact provider versions used.
