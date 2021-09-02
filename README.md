@@ -81,6 +81,32 @@ When you execute *terraform plan* a *.terraform.state* file will automatically b
 terraform init
 ```
 
+-**terraform validate**:
+
+```
+terraform validate
+```
+
+-**terraform plan**:
+
+```
+terraform plan
+```
+
+-**terraform apply**:
+
+```
+terraform apply
+```
+
+-**terraform destroy**:
+
+```
+terraform destroy
+```
+
+*Note: check also "show" and "state list" commands; they might come in handy*.
+
 ### Differences between variable files:
 
 -**.tf**:
