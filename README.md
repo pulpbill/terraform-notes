@@ -61,13 +61,17 @@ When you execute *terraform plan* a *.terraform.state* file will automatically b
 
 *Note: You can move and switch states, but it's an advanced feature and out of the scope for this 101*.
 
--**Input Variables**:
+-**Input Variables**: They serve as parameters for a Terraform module, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations. Think of them as function arguments in coding languages.
 
--**Output Values**:
+-**Output Values**: Are return values of a Terraform module. Think of them just as any other output as you are used to. (eg: An AWS EC2 instance IP address).
 
--**Local Values**:
+*Note: Outputs are only rendered when Terraform applies your plan. Running terraform plan will not render outputs*.
 
--**Lock file**: At present, the dependency lock file tracks only provider dependencies.Terraform automatically creates or updates the dependency lock file (*.terraform.lock.hcl*) each time you run the *terraform init* command. You should include this file in your version control repository so that you can discuss potential changes to your external dependencies via code review.
+-**Local Values**: Use them to assign a name to an expression, so you can use it multiple times within a module without repeating it.
+
+*Note: They only can be used within the module where they were declared. Also, notice that local values are created by a **locals** block (plural), but you reference them as attributes on an object named **local** (singular)*.
+
+-**Lock file**: At present, the dependency lock file tracks only provider dependencies. Terraform automatically creates or updates the dependency lock file (*.terraform.lock.hcl*) each time you run the *terraform init* command. You should include this file in your version control repository so that you can discuss potential changes to your external dependencies via code review.
 
 ## Commands:
 
@@ -85,8 +89,23 @@ terraform init
 -**.tfvars**:
 
 
+### Variable Definition Precedence:
+
+The above mechanisms for setting variables can be used together in any combination. If the same variable is assigned multiple values, Terraform uses the last value it finds, overriding any previous values. Note that the same variable cannot be assigned multiple values within a single source.
+
+Terraform loads variables in the following order, with later sources taking precedence over earlier ones:
+
+* Environment variables
+* The terraform.tfvars file, if present.
+* The terraform.tfvars.json file, if present.
+* Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
+* Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+
+
 ---
 **Sources**:
+
+https://www.terraform.io/docs/language/values/variables.html#variable-definition-precedence
 
 https://learn.hashicorp.com/terraform
 
