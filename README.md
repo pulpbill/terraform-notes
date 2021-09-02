@@ -6,7 +6,7 @@ Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and 
 
 ## Installation:
 
-###Ubuntu/Debian:
+### Ubuntu/Debian:
 
 -Ensure that your system is up to date, and you have the gnupg, software-properties-common, and curl packages installed. You will use these packages to verify HashiCorp's GPG signature, and install HashiCorp's Debian package repository:
 
