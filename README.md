@@ -97,6 +97,13 @@ terraform init -backend=false
 ```
 terraform plan
 ```
+It creates an execution plan. By default, creating a plan consists of:
+
+* Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+* Comparing the current configuration to the prior state and noting any differences.
+* Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
+
+If it detects that no changes are needed to resource instances or to root module output values, it will report that no actions need to be taken. Also, the "apply" command automatically generates a new plan and prompts for you to approve it.
 
 -**apply**:
 ```
