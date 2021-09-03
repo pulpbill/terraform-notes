@@ -75,32 +75,35 @@ When you execute *terraform plan* a *.terraform.state* file will automatically b
 
 ## Commands:
 
--**terraform init**: When you create a new configuration — or check out an existing configuration from version control — you need to initialize the directory with terraform init. Initializing a configuration directory downloads and installs the providers defined in the configuration in a hidden directory called *.terraform*, which in this case is the **aws provider**. Also, creates a **lock file** named: *.terraform.lock.hcl* which specifies the exact provider versions used.
-
+-**init**: 
 ```
 terraform init
 ```
+When you create a new configuration — or check out an existing configuration from version control — you need to initialize the directory with terraform init. Initializing a configuration directory downloads and installs the providers defined in the configuration in a hidden directory called *.terraform*, which in this case is the **aws provider**. Also, creates a **lock file** named: *.terraform.lock.hcl* which specifies the exact provider versions used.
 
--**terraform validate**:
-
+-**validate**: 
 ```
 terraform validate
 ```
+It validates the configuration files in a directory, referring only to the configuration and not accessing any remote services such as remote state, provider APIs, etc. It verifies whether a configuration is syntactically valid and internally consistent, regardless of any provided variables or existing state. It is thus primarily useful for general verification of reusable modules, including correctness of attribute names and value types. It would be useful to run a test step at a CI pipeline when you're re-using modules. 
 
--**terraform plan**:
+*Note: It requires an initialized working directory with any referenced plugins and modules installed. To initialize a working directory for validation without accessing any configured remote backend, use:*
 
+```
+terraform init -backend=false
+```
+
+-**plan**:
 ```
 terraform plan
 ```
 
--**terraform apply**:
-
+-**apply**:
 ```
 terraform apply
 ```
 
--**terraform destroy**:
-
+-**destroy**:
 ```
 terraform destroy
 ```
