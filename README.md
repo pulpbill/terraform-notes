@@ -52,20 +52,20 @@ sudo apt-get update && sudo apt-get install terraform
 
 -**Providers**: Providers are a logical abstraction of an upstream API. They are responsible for understanding API interactions and exposing resources. You'll use and browse through documentation for the provider you're using in order to deploy whatever you need (it's the first step before writing your modules). 
 
--**Modules**: A module is a set of Terraform configuration files in a single directory. Even a simple configuration consisting of a single directory with one or more .tf files is a module. This could be just one quick main.tf or many directories where you isolate per environment the type of services or resources that you are using (ideally, also having .tf and .tfvars files for each environment).
+-**Modules**: A module is a set of terraform configuration files in a single directory. Even a simple configuration consisting of a single directory with one or more .tf files is a module. This could be just one quick main.tf or many directories where you isolate per environment the type of services or resources that you are using (ideally, also having .tf and .tfvars files for each environment).
 
--**Data sources**: Terraform uses data sources to fetch information from cloud provider APIs, such as disk image IDs, or information about the rest of your infrastructure through the outputs of other Terraform configurations. Data sources allow you to load data from APIs or other Terraform workspaces (you can even use it between workspaces on TF cloud and enterprise).
+-**Data sources**: terraform uses data sources to fetch information from cloud provider APIs, such as disk image IDs, or information about the rest of your infrastructure through the outputs of other terraform configurations. Data sources allow you to load data from APIs or other terraform workspaces (you can even use it between workspaces on TF cloud and enterprise).
 
 -**States**: *.tfstate* Keep track of resources created by your configuration (modules) and maps them to real-world resources. You should not directly interact with state files.
 When you execute *terraform plan* a *.terraform.state* file will automatically be created. It will then store your changes (commands), like: plan - apply - destroy - show. It stores  metadata used to know what you have planned (either local or in TF cloud) and what you actually have deployed in whatever provider you've chosen.
 
 *Note: You can move and switch states, but it's an advanced feature and out of the scope for this 101*.
 
--**Input Variables**: They serve as parameters for a Terraform module, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations. Think of them as function arguments in coding languages.
+-**Input Variables**: They serve as parameters for a terraform module, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations. Think of them as function arguments in coding languages.
 
--**Output Values**: Are return values of a Terraform module. Think of them just as any other output as you are used to. (eg: An AWS EC2 instance IP address).
+-**Output Values**: Are return values of a terraform module. Think of them just as any other output as you are used to. (eg: An AWS EC2 instance IP address).
 
-*Note: Outputs are only rendered when Terraform applies your plan. Running terraform plan will not render outputs*.
+*Note: Outputs are only rendered when terraform applies your plan. Running terraform plan will not render outputs*.
 
 -**Local Values**: Use them to assign a name to an expression, so you can use it multiple times within a module without repeating it.
 
@@ -99,7 +99,7 @@ terraform plan
 ```
 It creates an execution plan. By default, creating a plan consists of:
 
-* Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+* Reading the current state of any already-existing remote objects to make sure that the terraform state is up-to-date.
 * Comparing the current configuration to the prior state and noting any differences.
 * Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
 
@@ -110,7 +110,7 @@ If it detects that no changes are needed to resource instances or to root module
 terraform apply
 ```
 It executes the actions proposed in a terraform plan. Implicitly creates a **plan** and all modes/options that applies to terraform plan command, are available to the  apply command.
-If you add **-auto-approve** as an option to apply command, it won't prompt you for approval.
+If you add ```-auto-approve``` as an option to apply command, it won't prompt you for approval.
 
 *Note: You could specify a previously saved plan file to apply, in this case, it won't prompt for approval.*
 
@@ -118,6 +118,8 @@ If you add **-auto-approve** as an option to apply command, it won't prompt you 
 ```
 terraform destroy
 ```
+It's a convenient way to destroy all remote objects managed by a particular terraform configuration. It's an alias of ```terraform apply -destroy``` that's why it accepts most of the command options as **terraform apply** command.
+If you like to run a "dry run", execute: ```terraform plan -destroy```.
 
 *Note: check also "show" and "state list" commands; they might come in handy*.
 
@@ -131,7 +133,7 @@ terraform destroy
 
 ### Variable Definition Precedence:
 
-The above mechanisms for setting variables can be used together in any combination. If the same variable is assigned multiple values, Terraform uses the last value it finds, overriding any previous values. Note that the same variable cannot be assigned multiple values within a single source.
+The above mechanisms for setting variables can be used together in any combination. If the same variable is assigned multiple values, terraform uses the last value it finds, overriding any previous values. Note that the same variable cannot be assigned multiple values within a single source.
 
 Terraform loads variables in the following order, with later sources taking precedence over earlier ones:
 
