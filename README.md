@@ -137,7 +137,7 @@ For the sake of simplicity, and since this is a topic that it will vary from one
 * Use variables.tf to declare your variable types
 * Use terraform.tfvars to assign values to your previously defined variables
 
-There are many ways to declare and set your variables. I recommend you go through the docs, not just to expand your knowledge but things might change or be deprecated.
+There are many ways to declare and set your variables. I recommend you go through the docs, not just to expand your knowledge but things might change or get deprecated.
 
 ### Variable Definition Precedence:
 
