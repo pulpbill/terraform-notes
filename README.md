@@ -2,11 +2,13 @@
 
 Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and there are plenty of examples, I'll write basic concepts and resources (kind of a cheatsheet) if you want to get started with Terraform.
 
-> **Important: I assume in these notes that you already have AWS credentials / IAM roles in place:**
+> **Important: I assume in these notes that you already have AWS credentials / IAM roles in place and I uploaded a functional (as of 05/09/21) basic main.tf file with its lock.hcl and .gitignore that will spin up an AWS EC2 instance (applicable for free tier users):**
 
-https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started - Getting started with AWS
 
-https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs - AWS as your provider
+ 
+https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure - If you use TF Cloud
 
 ## Installation:
 
