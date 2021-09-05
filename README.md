@@ -109,6 +109,10 @@ If it detects that no changes are needed to resource instances or to root module
 ```
 terraform apply
 ```
+It executes the actions proposed in a terraform plan. Implicitly creates a **plan** and all modes/options that applies to terraform plan command, are available to the  apply command.
+If you add **-auto-approve** as an option to apply command, it won't prompt you for approval.
+
+*Note: You could specify a previously saved plan file to apply, in this case, it won't prompt for approval.*
 
 -**destroy**:
 ```
