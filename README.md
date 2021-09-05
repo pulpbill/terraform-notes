@@ -1,8 +1,6 @@
 # terraform-notes
 
-# This is a [WIP]
-
-Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and there are plenty of examples, I'll wrote basic concepts and resources if you want to get started with Terraform.
+Sharing 101 notes that I'll be using at work. Since TF docs are quite clear and there are plenty of examples, I'll write basic concepts and resources (kind of a cheatsheet) if you want to get started with Terraform.
 
 ## Installation:
 
@@ -53,6 +51,8 @@ sudo apt-get update && sudo apt-get install terraform
 -**Providers**: Providers are a logical abstraction of an upstream API. They are responsible for understanding API interactions and exposing resources. You'll use and browse through documentation for the provider you're using in order to deploy whatever you need (it's the first step before writing your modules). 
 
 -**Modules**: A module is a set of terraform configuration files in a single directory. Even a simple configuration consisting of a single directory with one or more .tf files is a module. This could be just one quick main.tf or many directories where you isolate per environment the type of services or resources that you are using (ideally, also having .tf and .tfvars files for each environment).
+
+*Note: Keep an eye on how to use/call nested modules.*
 
 -**Data sources**: terraform uses data sources to fetch information from cloud provider APIs, such as disk image IDs, or information about the rest of your infrastructure through the outputs of other terraform configurations. Data sources allow you to load data from APIs or other terraform workspaces (you can even use it between workspaces on TF cloud and enterprise).
 
@@ -125,11 +125,11 @@ If you like to run a "dry run", execute: ```terraform plan -destroy```.
 
 ### Differences between variable files:
 
--**.tf**:
+For the sake of simplicity, and since this is a topic that it will vary from one use case to another, we'll keep it simple:
+* Use variables.tf to declare your variable types
+* Use terraform.tfvars to assign values to your previously defined variables
 
-  
--**.tfvars**:
-
+There are many ways to declare and set your variables. I recommend you go through the docs, not just to expand your knowledge but things might change or be deprecated.
 
 ### Variable Definition Precedence:
 
@@ -143,6 +143,22 @@ Terraform loads variables in the following order, with later sources taking prec
 * Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
 * Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
 
+---
+
+## What's next?
+
+I highly recommend you to understand (and find the best approach for your team) why it's important to have a centralized, versioned and protectd state file:
+
+https://www.terraform.io/docs/language/settings/backends/s3.html
+
+You'll store the state file at AWS S3 and the lock file at AWS DynamoDB.
+Or, you could go with TF Cloud/Enterprise if it suits your need/budget:
+
+https://www.terraform.io/docs/cloud/index.html
+
+The process of working with any IaC tool should follow the GitOps principle. Your team should use a VCS for infrastructure and do QA for the PRs as part of your daily basis.
+
+*I'll try to upload a full example of TF/S3/DynamoDB if I have the time*.
 
 ---
 **Sources**:
@@ -154,3 +170,7 @@ https://learn.hashicorp.com/terraform
 https://registry.terraform.io/browse/providers
 
 https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started
+
+https://www.terraform.io/docs/language/modules/develop/structure.html
+
+TechWorld with Nana: https://www.youtube.com/watch?v=l5k1ai_GBDE (check out other TF videos from her, it helped me a lot when I started).
